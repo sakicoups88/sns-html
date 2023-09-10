@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザーのテキスト投稿</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ユーザーのテキスト投稿</h1>
+
+    <!-- テキスト投稿フォーム -->
+    <form id="postForm">
+        <label for="userName">ユーザー名:</label>
+        <input type="text" id="userName" name="userName" required><br><br>
+        <label for="userPost">テキスト投稿:</label>
+        <textarea id="userPost" name="userPost" rows="4" cols="50" required></textarea><br><br>
+        <button type="submit">投稿</button>
+    </form>
+
+    <!-- 投稿一覧 -->
+    <div id="postList">
+        <!-- ここに投稿が表示されます -->
+    </div>
+
+    <script>
+        // フォーム送信時の処理
+        document.getElementById("postForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // フォームのデフォルトの動作をキャンセル
+
+            // フォームからユーザー名と投稿テキストを取得
+            const userName = document.getElementById("userName").value;
+            const userPost = document.getElementById("userPost").value;
+
+            // 新しい投稿を作成して表示
+            const postDiv = document.createElement("div");
+            postDiv.className = "post";
+            postDiv.innerHTML = `<strong>${userName}:</strong><br>${userPost}`;
+            document.getElementById("postList").appendChild(postDiv);
+
+            // フォームをリセット
+            document.getElementById("postForm").reset();
+        });
+    </script>
+</body>
+</html>
